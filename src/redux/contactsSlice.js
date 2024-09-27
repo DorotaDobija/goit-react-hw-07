@@ -30,6 +30,7 @@ const handleRejected = (state, action) => {
         .addCase(addContact.fulfilled, (state, action) => {
             state.isLoading = false;
             state.error = null;
+            console.log(action.payload)
             state.items.push(action.payload);
         })
         .addCase(addContact.rejected, handleRejected)
@@ -37,7 +38,7 @@ const handleRejected = (state, action) => {
         .addCase(deleteContact.fulfilled, (state, action) => {
             state.isLoading = false;
             state.error = null;
-            const index = state.items.findIndex((contact) => contact.id === action.payload)
+            const index = state.items.findIndex((contact) => contact.id === action.payload.id)
             state.items.splice(index, 1);
         })
         .addCase(deleteContact.rejected, handleRejected)
